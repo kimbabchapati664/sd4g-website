@@ -4,438 +4,614 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SD4G — Service Design for Good</title>
-<meta name="description" content="SD4G Lab at Dongseo University. Framing and solving complex wicked problems through service design — environmental challenges, social innovation, and ethical design for vulnerable communities.">
+<meta name="description" content="SD4G Lab at Dongseo University, Busan. Framing and solving complex wicked problems through service design and participatory methodologies.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
 /* ───────────────────────── tokens ───────────────────────── */
 :root{
-  --ink:#001736;            /* primary navy */
-  --ink-80:rgba(0,23,54,.8);
-  --ink-90:rgba(0,23,54,.9);
-  --ink-60:rgba(0,23,54,.6);
-  --ink-40:rgba(0,23,54,.4);
-  --muted:#5f6775;
-  --muted-70:rgba(95,103,117,.7);
-  --page:#fbf9f4;
-  --card:#ffffff;
-  --line:rgba(0,0,0,.05);
-  --line-strong:rgba(0,0,0,.15);
-  --wash:rgba(0,0,0,.05);
-  --wash-soft:rgba(0,0,0,.04);
-  --accent-teal:#00a694;
-  --accent-coral:#fd6a49;
-  --art-periwinkle:#c7d2fe;
-  --art-buttercup:#fce77d;
-  --art-lilac:#ddd6fe;
+  --page:#fcfcfd;
+  --ink:#111827;
+  --ink-2:#030712;
+  --body:#4b5563;
+  --muted:#6b7280;
+  --faint:#9ca3af;
+  --slate:#374151;
+  --slate-2:#1f2937;
+  --line:#e5e7eb;
+  --line-soft:#f3f4f6;
 
-  --shell:1440px;           /* design content width */
-  --gutter:64px;
+  --pink:#db2777;
+  --pink-500:#ec4899;
+  --pink-400:#f472b6;
+  --pink-300:#f9a8d4;
+  --pink-50:#fdf2f8;
+  --header:#181a20;
+  --hero-strip:#e00063;
+
+  --hero-grad:linear-gradient(153.43deg,#ff65a2 0%,#ff2882 50%,#e60067 100%);
+  --cta-grad:linear-gradient(to right,#ff2b85 0%,#ff453a 50%,#ff6b00 100%);
+
+  --shell:1280px;
+  --gutter:24px;
+
+  --sans:"Plus Jakarta Sans","Noto Sans KR",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
-  margin:0;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  background:var(--page);
-  color:var(--ink);
-  font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  -webkit-font-smoothing:antialiased;
+  margin:0;background:var(--page);color:var(--ink);
+  font-family:var(--sans);-webkit-font-smoothing:antialiased;
 }
-img{display:block;max-width:none}
+img{display:block;max-width:100%}
 p{margin:0}
+h1,h2,h3,h4{margin:0;font-weight:inherit}
+ul{margin:0;padding:0;list-style:none}
 a{color:inherit;text-decoration:none}
-button,input{font:inherit;color:inherit}
 
-.shell{width:100%;max-width:var(--shell);margin:0 auto}
+.shell{width:100%;max-width:var(--shell);margin:0 auto;padding-inline:var(--gutter)}
+
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--faint);line-height:16px}
+.h2{font-size:30px;font-weight:800;letter-spacing:-.75px;line-height:36px;color:var(--ink)}
+.more{display:inline-flex;align-items:center;font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--pink);line-height:16px}
+.more:hover{text-decoration:underline}
 
 /* ───────────────────────── header ───────────────────────── */
-.site-header{padding:28px var(--gutter) 16px}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
-.nav-left{display:flex;align-items:center;gap:48px}
-
-.brand{display:flex;align-items:center;gap:12px;padding:4px;border-radius:12px}
-.brand-mark{
-  width:40px;height:40px;flex:none;
-  display:flex;align-items:center;justify-content:center;
-  background:var(--ink);border-radius:999px;
-  filter:drop-shadow(0 1px 1px rgba(0,0,0,.05));
-}
-.brand-mark img{width:20px;height:20px}
-.brand-name{font-size:20px;font-weight:800;letter-spacing:-.5px;line-height:25px;color:var(--ink)}
-.brand-sub{display:flex;align-items:center;gap:6px;height:16.5px}
-.brand-sub span{font-size:11px;font-weight:600;letter-spacing:.275px;line-height:16.5px;color:var(--muted);white-space:nowrap}
-.brand-dot{width:4px;height:4px;flex:none;border-radius:999px;background:var(--accent-coral)}
-
-.nav-links{display:flex;align-items:center;gap:32px}
-.nav-links a{font-size:15px;font-weight:600;letter-spacing:-.375px;line-height:22.5px;color:var(--ink-80);white-space:nowrap}
-.nav-links a:hover{color:var(--ink)}
-
-.btn-ghost{
-  display:inline-flex;align-items:center;gap:8px;flex:none;
-  padding:11px 21px;border-radius:999px;
-  background:transparent;border:1px solid var(--line-strong);
-  box-shadow:0 1px 2px rgba(0,0,0,.05);
-  font-size:14px;font-weight:600;letter-spacing:-.35px;line-height:21px;color:var(--ink);
-  cursor:pointer;
-}
-.btn-ghost img{width:16px;height:16px}
+.site-header{position:sticky;top:0;z-index:50;background:var(--header);border-bottom:1px solid rgba(255,255,255,.1)}
+.site-header .shell{height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:6px}
+.brand b{font-size:20px;font-weight:800;letter-spacing:-.5px;line-height:28px;color:#fff}
+.brand .chip{padding:2px 6px;border-radius:4px;background:rgba(236,72,153,.1);font-size:11px;font-weight:600;letter-spacing:.55px;text-transform:uppercase;color:var(--pink-400);line-height:16.5px}
+.site-nav{display:flex;align-items:center;gap:28px}
+.site-nav a{font-size:13px;font-weight:500;line-height:19.5px;color:#d1d5db;white-space:nowrap}
+.site-nav a:hover{color:#fff}
+.btn-join{flex:none;padding:9px 17px;border-radius:9999px;background:transparent;border:1px solid rgba(236,72,153,.8);box-shadow:0 1px 2px rgba(0,0,0,.05);font-size:12px;font-weight:600;line-height:16px;color:var(--pink-300);white-space:nowrap}
+.btn-join:hover{background:rgba(236,72,153,.15)}
 
 /* ───────────────────────── hero ───────────────────────── */
-.hero{padding:31.5px var(--gutter) 79.5px;overflow:hidden}
-.hero-grid{
-  display:grid;
-  grid-template-columns:repeat(12,minmax(0,1fr));
-  column-gap:56px;
-  align-items:center;
-  min-height:778.56px;
-}
+.hero{background-image:var(--hero-grad);padding:112px 0 144px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:48px;align-items:center}
+.hero-text{grid-column:1 / span 7;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:24px;padding-top:2px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:4px 12px;border-radius:9999px;background:rgba(255,255,255,.2);backdrop-filter:blur(6px)}
+.hero-badge i{width:8px;height:8px;border-radius:9999px;background:#fde047}
+.hero-badge span{font-size:12px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;color:rgba(255,255,255,.9);line-height:16px;white-space:nowrap}
+.hero h1{font-size:60px;font-weight:800;letter-spacing:-1.5px;line-height:60px;color:#fff}
+.hero-lede{max-width:576px;font-size:20px;line-height:28px;color:rgba(255,255,255,.9)}
+.btn-white{display:inline-flex;align-items:center;justify-content:center;padding:12px 28px;border-radius:9999px;background:#fff;box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);font-size:14px;font-weight:700;line-height:20px;color:var(--pink)}
 
-/* left column */
-.hero-copy{grid-column:1 / span 5;min-width:0;display:flex;flex-direction:column;justify-content:center}
+.hero-art{grid-column:8 / span 5;min-width:0;display:flex;justify-content:center}
+.hero-art-box{position:relative;width:384px;height:384px;max-width:100%}
+.hero-glow{position:absolute;inset:-19.2px;border-radius:9999px;background:rgba(255,255,255,.15);filter:blur(20px)}
+.hero-card{position:absolute;inset:0;overflow:hidden;border-radius:24px;background:rgba(255,255,255,.1);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.25);box-shadow:0 25px 50px -12px rgba(0,0,0,.25)}
+.hero-card-top{position:absolute;left:24px;right:24px;top:24px;display:flex;align-items:center;justify-content:space-between}
+.hero-card-top span{font-family:var(--mono);font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.7);line-height:16px}
+.hero-card-foot{position:absolute;left:24px;right:24px;bottom:24px;padding-top:13px;border-top:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:space-between}
+.hero-card-foot span{font-size:11px;line-height:16.5px;color:rgba(255,255,255,.6)}
+.hero-medallion{position:absolute;left:0;right:0;top:calc(50% - 6.75px);transform:translateY(-50%);display:flex;flex-direction:column;align-items:center}
+.medallion{width:144px;height:144px;padding:4px;border-radius:9999px;background-image:linear-gradient(45deg,#f9a8d4 0%,#fff 50%,#fce7f3 100%);box-shadow:inset 0 2px 4px rgba(0,0,0,.05)}
+.medallion-inner{width:100%;height:100%;border-radius:9999px;padding:17px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(255,255,255,.3);backdrop-filter:blur(2px);border:1px solid rgba(244,114,182,.4)}
+.medallion-inner .emoji{font-size:30px;line-height:36px}
+.medallion-inner .label{padding-top:3px;font-size:11px;font-weight:700;letter-spacing:.55px;text-transform:uppercase;color:#831843;line-height:16.5px}
+.mini-tag{margin-top:16px;padding:7px 13px;border-radius:12px;background:rgba(0,0,0,.2);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.3);font-size:11px;font-weight:500;letter-spacing:.275px;color:#fff;line-height:16.5px;white-space:nowrap}
 
-.lab-badge{
-  display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
-  padding:5px 13px;border-radius:999px;
-  background:var(--wash);border:1px solid var(--line);
-  margin-bottom:20px;
-}
-.lab-badge i{width:6px;height:6px;border-radius:999px;background:var(--accent-teal)}
-.lab-badge span{
-  font-size:12px;font-weight:700;letter-spacing:.3px;line-height:16px;
-  text-transform:uppercase;color:var(--ink-80);white-space:nowrap;
-}
+.pillars{background:var(--hero-strip);border-top:1px solid rgba(255,255,255,.15)}
+.pillars .shell{display:flex;gap:32px;padding-block:40px}
+.pillar{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:9.125px}
+.pillar-head{display:flex;align-items:center;gap:8px}
+.pillar-head i{width:16px;height:2px;background:#fff;flex:none}
+.pillar-head span{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.8);line-height:16px}
+.pillar p{font-size:13px;line-height:21.13px;color:rgba(255,255,255,.95)}
 
-.hero-title{
-  margin:0 0 28px;
-  font-size:72px;font-weight:800;letter-spacing:-2.52px;line-height:72px;color:var(--ink);
-}
+/* ───────────────────────── projects ───────────────────────── */
+.explore{padding-block:80px}
+.section-head{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.card-row{display:flex;gap:32px;align-items:stretch;padding-top:8px}
+.card{flex:1 1 0;min-width:0;display:flex;flex-direction:column;justify-content:space-between;background:#fff;border:1px solid rgba(229,231,235,.9);border-radius:16px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.05);transition:box-shadow .2s}
+.card:hover{box-shadow:0 8px 24px -6px rgba(0,0,0,.12)}
+.card-media{height:208px;background:var(--line-soft);overflow:hidden}
+.card-media img{width:100%;height:100%;object-fit:cover;object-position:center}
+.card-body{padding:24px;display:flex;flex-direction:column;gap:12px}
+.card-body h3{font-size:16px;font-weight:700;letter-spacing:-.32px;line-height:22px;color:var(--ink)}
+.card-body p{font-size:12px;line-height:19.5px;color:var(--body)}
+.card-foot{display:flex;justify-content:flex-end;padding:8px 24px 24px;font-size:12px;line-height:16px;color:var(--faint)}
 
-.hero-lede{
-  max-width:448px;height:146.51px;margin:-1.06px 0 0;
-  font-size:17px;font-weight:400;line-height:27.63px;color:var(--muted);
-}
+.panel-ai{position:relative;height:208px;padding:24px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;background-image:linear-gradient(151.76deg,#1e3a8a 0%,#1e1b4b 50%,#000 100%)}
+.panel-ai .tag{align-self:flex-start;padding:4px 10px;border-radius:4px;background:rgba(37,99,235,.6);backdrop-filter:blur(2px);font-family:var(--mono);font-size:10px;letter-spacing:.25px;text-transform:uppercase;color:#fff;line-height:15px}
+.panel-ai .glow{position:absolute;right:-24px;bottom:-24px;width:128px;height:128px;border-radius:9999px;background:rgba(59,130,246,.2);filter:blur(20px)}
+.panel-ai .stack{position:relative;padding-top:5px}
+.panel-ai .kicker{font-size:11px;font-weight:600;letter-spacing:.55px;text-transform:uppercase;color:#93c5fd;line-height:16.5px}
+.panel-ai .title{padding-top:3px;font-size:18px;font-weight:700;line-height:22.5px;color:#fff}
 
-/* form */
-.capture{display:flex;flex-direction:column;gap:14px;width:100%;max-width:384px}
-.capture form{display:flex;flex-direction:column;gap:12px}
-.field{padding-bottom:8px;border-bottom:2px solid var(--line-strong)}
-.field input{
-  width:100%;padding:1px 0 3px;border:0;background:transparent;outline:none;
-  font-size:16px;font-weight:500;color:var(--ink);
-}
-.field input::placeholder{color:var(--muted-70)}
-.field:focus-within{border-bottom-color:var(--ink)}
+.view-all{padding-top:5.5px;padding-bottom:2px}
 
-.submit-row{display:flex;align-items:center;gap:12px;padding-top:4px}
-.btn-solid{
-  flex:1 0 0;min-width:0;
-  padding:14px 24px;border:0;border-radius:12px;background:var(--ink);
-  filter:drop-shadow(0 1px 1px rgba(0,0,0,.05));
-  font-size:14px;font-weight:500;letter-spacing:-.35px;line-height:20px;
-  color:#fff;text-align:center;cursor:pointer;
-}
-.mail-badge{
-  width:48px;height:48px;flex:none;
-  display:flex;align-items:center;justify-content:center;
-  background:var(--wash-soft);border:1px solid var(--line);border-radius:12px;
-}
-.mail-badge img{width:20px;height:20px}
+.research{margin-top:32px;padding-top:65px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:48px}
+.research-areas{grid-column:1 / span 4;min-width:0}
+.research-areas ul{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+.research-areas li{display:flex;align-items:center;gap:12px}
+.tagbox{width:28px;height:28px;flex:none;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;line-height:16px}
+.research-areas li > span:last-child{font-size:12px;font-weight:500;line-height:16px;color:var(--slate)}
 
-.lab-meta{display:flex;align-items:center;gap:6px}
-.lab-meta img{width:14px;height:14px;flex:none}
-.lab-meta p{font-size:12px;line-height:16px;color:var(--muted)}
+.publications{grid-column:5 / span 8;min-width:0}
+.publications ol{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:20px}
+.pub{display:flex;flex-direction:column;gap:2px}
+.pub + .pub{border-top:1px solid var(--line-soft);padding-top:23.5px}
+.pub time{font-family:var(--mono);font-size:11px;line-height:16.5px;color:var(--faint)}
+.pub h4{padding-top:2.5px;font-size:14px;font-weight:700;letter-spacing:-.28px;line-height:20px;color:var(--ink)}
+.pub cite{font-style:italic;font-size:12px;line-height:16px;color:var(--muted)}
 
-/* right column — card rail */
-.hero-cards{
-  grid-column:6 / span 7;
-  min-width:0;
-  height:510.54px;
-  overflow-x:auto;overflow-y:hidden;
-  scrollbar-width:none;
-}
-.hero-cards::-webkit-scrollbar{display:none}
-.card-rail{display:flex;gap:24px;padding:8px 4px 24px;width:max-content;height:100%}
+/* ───────────────────────── study with us ───────────────────────── */
+.study{background:rgba(249,250,251,.8);border-top:1px solid rgba(229,231,235,.8);border-bottom:1px solid rgba(229,231,235,.8);padding-block:81px}
+.study-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:32px;margin-bottom:32px}
+.study-intro{grid-column:1 / span 7;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.study-intro p{max-width:672px;font-size:14px;line-height:20px;color:var(--body)}
+.btn-outline{margin-top:8px;display:inline-flex;align-items:center;padding:12px 22px;border-radius:9999px;background:transparent;border:2px solid var(--pink-500);box-shadow:0 1px 2px rgba(0,0,0,.05);font-size:12px;font-weight:700;line-height:16px;color:var(--pink)}
+.btn-outline:hover{background:var(--pink-50)}
+.dsu-card{grid-column:8 / span 5;min-width:0;background:#fff;border:1px solid rgba(229,231,235,.8);border-radius:16px;padding:25px;display:flex;flex-direction:column;gap:12px}
+.dsu-mark{display:flex;align-items:center;gap:10px}
+.dsu-mark b{font-size:24px;font-weight:800;letter-spacing:-1.2px;line-height:32px;color:#dc2626}
+.dsu-mark span{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);line-height:12px}
+.dsu-card > p{font-style:italic;font-size:12px;line-height:19.5px;color:var(--muted)}
 
-.card{
-  width:310px;height:100%;flex:none;
-  display:flex;flex-direction:column;justify-content:space-between;
-  padding:25px;border-radius:32px;
-  background:var(--card);border:1px solid var(--line);
-  box-shadow:0 4px 20px -2px rgba(0,23,54,.04);
-}
-.card-top{display:flex;flex-direction:column;gap:8px}
-.card-meta{display:flex;align-items:center;justify-content:space-between}
-.tag{
-  padding:6px 12px;border-radius:999px;background:var(--wash);
-  font-size:12px;font-weight:600;line-height:16px;color:var(--ink-90);white-space:nowrap;
-}
-.card-arrow{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:999px}
-.card-arrow img{width:16px;height:16px}
-.card h2{
-  margin:0;padding-top:12px;
-  font-size:24px;font-weight:700;letter-spacing:-.6px;line-height:33px;color:var(--ink);
-}
-.card-desc{padding-right:8px;font-size:12px;line-height:19.5px;color:var(--muted)}
+.degrees{display:flex;gap:24px;align-items:stretch}
+.degree{flex:1 1 0;min-width:0;background:#fff;border:1px solid rgba(229,231,235,.8);border-radius:16px;padding:29px}
+.degree dl{margin:0}
+.degree dt{padding-top:6.5px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--faint);line-height:15px}
+.degree dd{margin:4.5px 0 0;font-size:12px;font-weight:600;text-transform:uppercase;color:var(--slate-2);line-height:16px}
+.degree dd.name{font-size:16px;font-weight:800;letter-spacing:-.32px;text-transform:none;line-height:24px;color:var(--ink)}
+.degree .note{padding-top:12px;font-size:12px;line-height:19.5px;color:var(--muted)}
 
-/* illustration canvases */
-.canvas-wrap{height:244.02px;padding-top:24px}
-.canvas{
-  position:relative;height:220.02px;border-radius:16px;overflow:hidden;
-  display:flex;justify-content:center;
-}
+/* ───────────────────────── director ───────────────────────── */
+.director{padding-block:80px}
+.director-card{margin-top:40px;background:#fff;border:1px solid rgba(229,231,235,.8);border-radius:24px;padding:49px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:40px;align-items:start}
+.portrait{grid-column:1 / span 4;min-width:0}
+.portrait div{width:256px;height:256px;max-width:100%;border-radius:9999px;overflow:hidden;background:var(--line);border:4px solid var(--line-soft);box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1)}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:center}
+.bio{grid-column:5 / span 8;min-width:0}
+.bio-top{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.bio-top h3{font-size:24px;font-weight:700;letter-spacing:-.48px;line-height:32px;color:var(--ink)}
+.bio-top .role{font-size:12px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);line-height:16px}
+.flags{display:flex;align-items:center;gap:6px;font-size:20px;line-height:28px}
+.bio > p{margin-top:16px;font-size:14px;line-height:20px;color:var(--body)}
+.bio-ctas{display:flex;gap:24px;padding-top:16px}
 
-/* card 1 — ecology */
-.canvas-eco{background:var(--art-periwinkle);align-items:flex-end;padding:68px 12px 24px}
-.loop-guide{position:absolute;inset:32px;border:2px dashed var(--ink-40);border-radius:999px}
-.sprout{position:relative;width:128px;height:128px;display:flex;align-items:center;justify-content:center}
-.sprout > img{width:100%;height:100%;filter:drop-shadow(0 1px .5px rgba(0,0,0,.05))}
-.sprout-eyes{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:12px;padding-top:20px}
-.sprout-eyes i{width:10px;height:10px;border-radius:999px;background:var(--ink)}
-.sprout-smile{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding-top:40px}
-.sprout-smile i{width:14px;height:8px;border-bottom:2px solid var(--ink);border-radius:999px}
+/* ───────────────────────── blog ───────────────────────── */
+.blog{background:rgba(249,250,251,.5);border-top:1px solid var(--line);padding:65px 0 64px}
+.blog .card-media{height:192px}
+.blog .card-body{gap:6.5px;padding:30.5px 24px 24px}
+.blog .card-body p:last-child{padding-top:5.5px}
 
-/* card 2 — economy */
-.canvas-econ{background:var(--art-buttercup);align-items:flex-end;padding:104px 12px 4px}
-.sunburst{width:160px;height:112px}
-.sunburst img{width:100%;height:100%}
-.coin{
-  position:absolute;top:24px;right:48px;
-  width:44px;height:44px;display:flex;align-items:center;justify-content:center;
-  background:#fff;border:2px solid var(--ink);border-radius:999px;
-  filter:drop-shadow(0 1px 1px rgba(0,0,0,.05));
-}
-.coin img{width:24px;height:24px}
+/* ───────────────────────── marquee ───────────────────────── */
+.marquee-section{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:21px;overflow:hidden}
+.marquee-title{font-size:14px;font-weight:700;letter-spacing:.35px;line-height:20px;text-align:center;color:var(--ink);margin-bottom:12px}
+.marquee{position:relative;height:16px;overflow:hidden}
+.marquee-track{display:flex;align-items:center;width:max-content;animation:scroll 40s linear infinite}
+.marquee-track span{padding-right:24px;font-size:12px;font-weight:600;letter-spacing:.3px;line-height:16px;color:var(--slate);white-space:nowrap}
+.marquee-track span.hot{color:#ef4444}
+.marquee-track span.pink{color:var(--pink-500)}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
 
-/* card 3 — individuality */
-.canvas-incl{background:var(--art-lilac);align-items:center;padding:12px}
-.empathy{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:100%}
-.empathy-glow{
-  position:absolute;left:62px;top:42px;width:112px;height:112px;
-  background:rgba(255,255,255,.4);border-radius:999px;filter:blur(2px);
-}
-.empathy-art{position:relative;display:flex;align-items:center;gap:8px}
-.heart{
-  position:relative;width:96px;height:96px;overflow:hidden;
-  filter:drop-shadow(0 1px .5px rgba(0,0,0,.06)) drop-shadow(0 1px 1px rgba(0,0,0,.1));
-}
-.heart > div{position:absolute}
-.heart img{width:100%;height:100%}
-.heart-body{inset:17.77% 16.25% 18% 16.25%}
-.heart-body > div{position:absolute;inset:-1.56% 43.79% 43.97% -1.48%}
-.heart-eye-l{inset:37.5% 55.5% 57.5% 39.5%}
-.heart-eye-r{inset:37.5% 39.5% 57.5% 55.5%}
-.heart-eye-l > div,.heart-eye-r > div{position:absolute;inset:0 45.27% 45.27% 0}
-.heart-smile{top:48%;bottom:50%;left:46%;right:46%}
-.heart-smile > div{position:absolute;inset:-50% 32.77% -4.73% -12.5%}
-.heart-spark{inset:10% 12% 74% 72%}
-.heart-spark > div{position:absolute;inset:-11.86% 33.41% 33.41% -11.86%}
-.link-lines{display:flex;flex-direction:column;gap:6px;opacity:.7}
-.link-lines i{height:4px;border-radius:999px;background:var(--ink-60)}
-.link-lines i:first-child{width:24px}
-.link-lines i:last-child{width:16px}
+/* ───────────────────────── gallery ───────────────────────── */
+.gallery{background:#fff;padding:4px 0}
+.gallery .shell{display:flex;gap:12px;padding-block:24px}
+.gallery figure{flex:1 1 0;min-width:0;margin:0;height:320px;overflow:hidden;background:var(--line-soft);border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.gallery img{width:100%;height:100%;object-fit:cover;object-position:center}
+
+/* ───────────────────────── CTA ───────────────────────── */
+.cta{background-image:var(--cta-grad);padding:64px 24px;text-align:center}
+.cta-inner{max-width:768px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:16px}
+.cta h2{font-size:36px;font-weight:800;letter-spacing:-.9px;line-height:40px;color:#fff}
+.cta p{max-width:576px;font-size:16px;line-height:24px;color:rgba(255,255,255,.95)}
+.cta .btn-white{margin-top:12px;padding:12px 32px;font-size:12px;line-height:16px;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1)}
 
 /* ───────────────────────── footer ───────────────────────── */
-.site-footer{height:41px;border-top:1px solid var(--line)}
+.site-footer{background:#fff;border-top:1px solid var(--line);padding:57px 0 56px}
+.footer-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:40px}
+.footer-brand{grid-column:1 / span 6;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.footer-brand .brand b{color:var(--ink-2)}
+.footer-brand .chip{background:var(--pink-50);color:var(--pink)}
+.footer-brand address{max-width:384px;font-style:normal;font-size:12px;line-height:19.5px;color:var(--muted)}
+.footer-contact{display:flex;flex-direction:column;gap:8px;padding-top:4px}
+.footer-contact a{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;line-height:16px;color:var(--body)}
+.footer-contact a:hover{color:var(--pink)}
+.footer-links{grid-column:7 / span 6;min-width:0;display:flex;gap:24px;justify-content:center}
+.footer-links > div{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:12px}
+.footer-links h4{font-size:11px;font-weight:700;letter-spacing:.55px;text-transform:uppercase;color:var(--ink);line-height:16px}
+.footer-links ul{display:flex;flex-direction:column;gap:8px}
+.footer-links a{font-size:12px;line-height:16px;color:var(--muted)}
+.footer-links a:hover{color:var(--pink)}
+.copyright{margin-top:40px;padding-top:25px;border-top:1px solid var(--line-soft);display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:11px;line-height:16px;color:var(--faint)}
 
 /* ───────────────────────── responsive ───────────────────────── */
-@media (max-width:1180px){
-  :root{--gutter:40px}
-  .nav-links{display:none}
-  .hero-grid{grid-template-columns:minmax(0,1fr);row-gap:56px;min-height:0}
-  .hero-copy,.hero-cards{grid-column:1 / -1}
-  .hero-title{font-size:clamp(44px,8vw,72px);line-height:1;letter-spacing:-.035em}
-  .hero-lede{height:auto;max-width:560px;margin-bottom:28px}
-  .hero-lede br{display:none}
-  .hero-cards{height:auto}
-  .card-rail{height:auto}
-  .card{height:478.54px}
+@media (max-width:1100px){
+  .site-nav{display:none}
+  .hero{padding:72px 0 96px}
+  .hero-grid{grid-template-columns:minmax(0,1fr);gap:56px}
+  .hero-text,.hero-art{grid-column:1 / -1}
+  .hero h1{font-size:clamp(40px,7vw,60px);line-height:1.05}
+  .hero-lede{font-size:18px}
+  .hero-lede br,.pillar p br,.card-body p br,.bio > p br,.study-intro p br,.cta p br,.footer-brand address br{display:none}
+  .pillars .shell{flex-direction:column;gap:28px}
+  .card-row{flex-wrap:wrap}
+  .card-row > .card{flex:1 1 300px}
+  .research{grid-template-columns:minmax(0,1fr);gap:40px}
+  .research-areas,.publications{grid-column:1 / -1}
+  .study-head{grid-template-columns:minmax(0,1fr);gap:28px}
+  .study-intro,.dsu-card{grid-column:1 / -1}
+  .degrees{flex-wrap:wrap}
+  .degree{flex:1 1 280px}
+  .director-card{grid-template-columns:minmax(0,1fr);gap:32px;padding:32px}
+  .portrait,.bio{grid-column:1 / -1}
+  .portrait div{width:180px;height:180px}
+  .gallery .shell{flex-wrap:wrap}
+  .gallery figure{flex:1 1 260px;height:240px}
+  .cta{padding:56px 24px}
+  .cta h2{font-size:28px;line-height:34px}
+  .footer-grid{grid-template-columns:minmax(0,1fr);gap:36px}
+  .footer-brand,.footer-links{grid-column:1 / -1}
+  .footer-links{justify-content:flex-start}
 }
 @media (max-width:640px){
-  :root{--gutter:20px}
-  .site-header{padding:20px var(--gutter) 12px}
-  .brand-sub{display:none}
-  .btn-ghost span{display:none}
-  .btn-ghost{padding:11px}
-  .hero{padding:24px var(--gutter) 48px}
-  .capture{max-width:none}
+  .site-header .shell{gap:8px}
+  .btn-join{padding:8px 12px;font-size:11px}
+  .hero{padding:56px 0 72px}
+  .hero-art-box{width:100%;max-width:340px;height:340px}
+  .hero h1{font-size:clamp(34px,9vw,44px)}
+  .explore,.director,.study{padding-block:56px}
+  .blog{padding:48px 0}
+  .card-row,.degrees,.gallery .shell{gap:16px}
+  .bio-top{flex-direction:column;align-items:flex-start;gap:12px}
+  .copyright{flex-direction:column;align-items:flex-start;gap:8px}
+  .footer-links{flex-wrap:wrap;gap:28px}
+  .footer-links > div{flex:1 1 140px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- ───────── header ───────── -->
 <header class="site-header">
-  <nav class="nav shell">
-    <div class="nav-left">
-      <a class="brand" href="#" aria-label="SD4G home">
-        <span class="brand-mark"><img src="assets/logo.svg" alt=""></span>
-        <span>
-          <span class="brand-name">SD4G</span>
-          <span class="brand-sub">
-            <span>Service Design for Good</span>
-            <i class="brand-dot"></i>
-            <span>Dongseo Univ.</span>
-          </span>
-        </span>
-      </a>
+  <div class="shell">
+    <a class="brand" href="#top"><b>SD4G</b><span class="chip">Lab</span></a>
+    <nav class="site-nav">
+      <a href="#about">About</a>
+      <a href="#people">People</a>
+      <a href="#projects">Projects</a>
+      <a href="#publications">Publications</a>
+      <a href="#blog">Blog</a>
+      <a href="#scholarship">Scholarship</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn-join" href="#contact">Join our research</a>
+  </div>
+</header>
 
-      <div class="nav-links">
-        <a href="#">About</a>
-        <a href="#">People</a>
-        <a href="#">Projects</a>
-        <a href="#">Publications</a>
-        <a href="#">Study with us</a>
-        <a href="#">Contact</a>
+<main id="top">
+
+<section class="hero" id="about">
+  <div class="shell hero-grid">
+    <div class="hero-text">
+      <span class="hero-badge"><i></i><span>Dongseo University Design Lab</span></span>
+      <h1>Service Design<br>for Good</h1>
+      <p class="hero-lede">Framing and solving complex wicked problems through<br>service design and participatory methodologies.</p>
+      <a class="btn-white" href="#contact">Join our research</a>
+    </div>
+
+    <div class="hero-art">
+      <div class="hero-art-box">
+        <div class="hero-glow"></div>
+        <div class="hero-card">
+          <div class="hero-card-top"><span>[SD4G.ORG]</span><span>DSU Lab</span></div>
+          <div class="hero-medallion">
+            <div class="medallion">
+              <div class="medallion-inner">
+                <div class="emoji" role="img" aria-label="Seedling">🌱</div>
+                <div class="label">Eco Design</div>
+              </div>
+            </div>
+            <div class="mini-tag">Circular Waste &amp; Social Innovation</div>
+          </div>
+          <div class="hero-card-foot"><span>Service Design Tools</span><span>South Korea</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pillars">
+  <div class="shell">
+    <div class="pillar">
+      <div class="pillar-head"><i></i><span>SD4 Ecology</span></div>
+      <p>How might we tackle the rising problem of environmental<br>pollutions (i.e. plastic waste) through positive service design<br>interventions?</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-head"><i></i><span>SD4 Economy</span></div>
+      <p>How might we turn waste (i.e. food waste) into resources to<br>drive social enterprises that create new value through social<br>capital?</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-head"><i></i><span>SD4 Individuality</span></div>
+      <p>How might we design ethically for vulnerable populations and<br>give voice to stigmatized topics (i.e. digital inclusion, mental<br>health)?</p>
+    </div>
+  </div>
+</section>
+
+<section class="explore" id="projects">
+  <div class="shell">
+    <div class="section-head">
+      <h2 class="h2">Explore what we do</h2>
+      <p class="eyebrow">Recent projects</p>
+    </div>
+
+    <div class="card-row">
+      <article class="card">
+        <div>
+          <div class="panel-ai">
+            <span class="tag">RISE Program</span>
+            <div class="glow"></div>
+            <div class="stack">
+              <div class="kicker">Generative</div>
+              <div class="title">AI-Driven Development</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3>Generative AI-Driven Development of<br>Carbon Reduction Technologies</h3>
+            <p>The SD4G Service Design For Good Lab has been selected to lead an innovative carbon metering initiative as part of the prestigious RISE program. This project, rooted in AI-assisted lifecycle assessment.</p>
+          </div>
+        </div>
+        <div class="card-foot" aria-hidden="true">➔</div>
+      </article>
+
+      <article class="card">
+        <div>
+          <div class="card-media"><img src="assets/img/project-igreen.png" alt="Club IGREEN presentation poster"></div>
+          <div class="card-body">
+            <h3>Club. IGREEN</h3>
+            <p>Educational teaching aid kits and contents using sea urchins, which cause sea desertification. We created a start-up club and conducted it with undergraduate students to raise marine environmental awareness.</p>
+          </div>
+        </div>
+        <div class="card-foot" aria-hidden="true">➔</div>
+      </article>
+
+      <article class="card">
+        <div>
+          <div class="card-media"><img src="assets/img/project-biodesign.png" alt="Bio Design Challenge in New York"></div>
+          <div class="card-body">
+            <h3>Bio Design Challenge in New York</h3>
+            <p>Since its founding in 2015, BDC has worked with over 100 high schools and colleges in 29 countries. Each June, finalist teams gather at the Museum of Modern Art (MoMA) to exhibit revolutionary biodesign solutions.</p>
+          </div>
+        </div>
+        <div class="card-foot" aria-hidden="true">➔</div>
+      </article>
+    </div>
+
+    <div class="view-all"><a class="more" href="#projects">View all projects ➔</a></div>
+
+    <div class="research" id="publications">
+      <div class="research-areas">
+        <h3 class="eyebrow">Research areas</h3>
+        <ul>
+          <li><span class="tagbox" style="background:#fee2e2;color:#dc2626">DE</span><span>Design Education</span></li>
+          <li><span class="tagbox" style="background:#fce7f3;color:#db2777">DF</span><span>Design Facilitation</span></li>
+          <li><span class="tagbox" style="background:#f3e8ff;color:#9333ea">DT</span><span>Design Thinking</span></li>
+          <li><span class="tagbox" style="background:#dbeafe;color:#2563eb">G</span><span>Generative Tools</span></li>
+          <li><span class="tagbox" style="background:#ccfbf1;color:#0d9488">S</span><span>Service Design Methods</span></li>
+        </ul>
+      </div>
+
+      <div class="publications">
+        <h3 class="eyebrow">Recent publications</h3>
+        <ol>
+          <li class="pub">
+            <time datetime="2023-07-11">7/11/2023</time>
+            <h4>Local Particularities in Regional Social Innovation: A Case Study of Rural Stay Program in Mungyeong, South Korea*</h4>
+            <cite>ServDes</cite>
+          </li>
+          <li class="pub">
+            <time datetime="2022-11-06">11/6/2022</time>
+            <h4>Quality Factors for Generative Toolkits in a participatory Design Approach to give Users a voice in Social Innovation</h4>
+            <cite>The 5th International Conference on Culture Technology (ICCT 2022)</cite>
+          </li>
+          <li class="pub">
+            <time datetime="2022-08-16">8/16/2022</time>
+            <h4>Framing Instead of Solving: Approaching the Wicked problem of Restaurant Food Waste through Service Design Research</h4>
+            <cite>Journal of Service Research and Studies</cite>
+          </li>
+          <li class="pub">
+            <time datetime="2022-06-30">6/30/2022</time>
+            <h4>디자인씽킹 워크숍에서 퍼실리테이터의 6가지 핵심 역할 제안</h4>
+            <cite>Journal of Integrated Design Research</cite>
+          </li>
+          <li class="pub">
+            <time datetime="2022-04-30">4/30/2022</time>
+            <h4>초보 서비스 디자이너를 위한 디자인 퍼실리테이션 기법 제안</h4>
+            <cite>한국기초조형학회</cite>
+          </li>
+        </ol>
+        <div class="view-all" style="padding-top:21.5px"><a class="more" href="#publications">View all publications ➔</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="study" id="scholarship">
+  <div class="shell">
+    <div class="study-head">
+      <div class="study-intro">
+        <h2 class="h2">Study with us</h2>
+        <p>We are looking for promising Ph.D. and MS candidates. Applicants with excellent academic track records or equivalent professional research experience may be eligible for talent-based research scholarships, covering Tuition fees and research-related expenses. Both Korean and International students are welcome.</p>
+        <a class="btn-outline" href="#contact">View Scholarship</a>
+      </div>
+
+      <div class="dsu-card">
+        <div class="dsu-mark"><b>DSU</b><span>Dongseo<br>University</span></div>
+        <p>Dongseo University is a private university in Busan, the second-largest city in South Korea. The university has one of the highest Ph.D. Design graduates output in Korea.</p>
       </div>
     </div>
 
-    <a class="btn-ghost" href="#">
-      <img src="assets/icon-join.svg" alt="">
-      <span>Join Our Research</span>
-    </a>
-  </nav>
-</header>
+    <div class="degrees">
+      <div class="degree">
+        <dl>
+          <dt>Degree</dt><dd class="name">Doctorate (Ph.D.)</dd>
+          <dt>Language</dt><dd>English &amp; Korean</dd>
+          <dt>Start in</dt><dd>Mar &amp; Sep</dd>
+          <dt>Credits</dt><dd>36 credits, 24+ months</dd>
+        </dl>
+      </div>
+      <div class="degree">
+        <dl>
+          <dt>Degree</dt><dd class="name">Master's (M.A.)</dd>
+          <dt>Language</dt><dd>English &amp; Korean</dd>
+          <dt>Start in</dt><dd>Mar &amp; Sep</dd>
+          <dt>Credits</dt><dd>24 credits, 24 months</dd>
+        </dl>
+      </div>
+      <div class="degree">
+        <dl>
+          <dt>Position</dt><dd class="name">Undergraduate Research Assistant (RA)</dd>
+          <dt>Type</dt><dd>Volunteer internship</dd>
+          <dt>Start</dt><dd>Jan &amp; July</dd>
+        </dl>
+        <p class="note">If you are interested in working as a Research Assistant, reach out to inquire about joining our research team.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- ───────── hero ───────── -->
-<main class="hero">
-  <div class="hero-grid shell">
-
-    <!-- left: editorial typography + capture form -->
-    <section class="hero-copy">
-      <span class="lab-badge">
-        <i></i><span>SD4G Lab · Dongseo University</span>
-      </span>
-
-      <h1 class="hero-title">Design for<br>Good.<br>Frame<br>Boldly.<br>Solve<br>Wicked.</h1>
-
-      <p class="hero-lede">
-        Framing and solving complex wicked problems through<br>
-        service design. We tackle rising environmental<br>
-        challenges, drive social innovation, and design ethically<br>
-        for vulnerable communities.
-      </p>
-
-      <div class="capture">
-        <form onsubmit="return false;">
-          <label class="field">
-            <span class="sr-only" hidden>Email</span>
-            <input type="email" name="email" placeholder="Enter your email" autocomplete="email">
-          </label>
-          <div class="submit-row">
-            <button class="btn-solid" type="submit">Inquire / Collaborate</button>
-            <span class="mail-badge"><img src="assets/icon-mail.svg" alt=""></span>
+<section class="director" id="people">
+  <div class="shell">
+    <h2 class="h2">Meet our lab director</h2>
+    <div class="director-card">
+      <div class="portrait">
+        <div><img src="assets/img/director-portrait.png" alt="Prof. Yong-Ki Lee, SD4G Lab Director"></div>
+      </div>
+      <div class="bio">
+        <div class="bio-top">
+          <div>
+            <h3>Yong-Ki Lee</h3>
+            <p class="role">Lab Director</p>
           </div>
-        </form>
-        <div class="lab-meta">
-          <img src="assets/icon-pin.svg" alt="">
-          <p>Based in Busan, South Korea · Led by Prof. Yong-Ki Lee</p>
+          <div class="flags" role="img" aria-label="Germany, United States, South Korea">🇩🇪 🇺🇸 🇰🇷</div>
+        </div>
+        <p>Assistant Professor at Graduate school of Design, Dongseo University. I received my Ph.D. Degree in Industrial Design from KAIST, South Korea. With more than 10 years of teaching experience, my goal is to produce service design graduates who can make an impact. My four main research areas are UX Design, Service Design, Social Innovation, and Sustainable Development.</p>
+        <div class="bio-ctas">
+          <a class="more" href="#people">View profile ➔</a>
+          <a class="more" href="#people">Download my CV ➔</a>
         </div>
       </div>
-    </section>
-
-    <!-- right: focus area cards -->
-    <section class="hero-cards" aria-label="Focus areas">
-      <div class="card-rail">
-
-        <!-- card 1 -->
-        <article class="card">
-          <div class="card-top">
-            <div class="card-meta">
-              <span class="tag">SD4 Ecology</span>
-              <span class="card-arrow"><img src="assets/icon-arrow.svg" alt=""></span>
-            </div>
-            <h2>Carbon &amp; Waste<br>Interventions</h2>
-            <p class="card-desc">
-              Generative AI-driven carbon reduction<br>
-              technologies &amp; tackling plastic waste<br>
-              through positive service design.
-            </p>
-          </div>
-          <div class="canvas-wrap">
-            <div class="canvas canvas-eco">
-              <div class="loop-guide"></div>
-              <div class="sprout">
-                <img src="assets/art-leaf.svg" alt="Sprouting ecology character">
-                <span class="sprout-eyes"><i></i><i></i></span>
-                <span class="sprout-smile"><i></i></span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- card 2 -->
-        <article class="card">
-          <div class="card-top">
-            <div class="card-meta">
-              <span class="tag">SD4 Economy</span>
-              <span class="card-arrow"><img src="assets/icon-arrow.svg" alt=""></span>
-            </div>
-            <h2>Social Innovation<br>&amp; Capital</h2>
-            <p class="card-desc">
-              Turning food waste into resources to drive<br>
-              social enterprises that create new value<br>
-              through participatory design.
-            </p>
-          </div>
-          <div class="canvas-wrap">
-            <div class="canvas canvas-econ">
-              <div class="sunburst">
-                <img src="assets/art-sunburst.svg" alt="Community hands radiating sunshine">
-              </div>
-              <span class="coin"><img src="assets/icon-coin.svg" alt=""></span>
-            </div>
-          </div>
-        </article>
-
-        <!-- card 3 -->
-        <article class="card">
-          <div class="card-top">
-            <div class="card-meta">
-              <span class="tag">SD4 Individuality</span>
-              <span class="card-arrow"><img src="assets/icon-arrow-3.svg" alt=""></span>
-            </div>
-            <h2>Ethical &amp; Inclusive<br>Design</h2>
-            <p class="card-desc">
-              Designing ethically for vulnerable<br>
-              populations and giving voice to stigmatized<br>
-              topics, digital inclusion &amp; mental health.
-            </p>
-          </div>
-          <div class="canvas-wrap">
-            <div class="canvas canvas-incl">
-              <div class="empathy">
-                <div class="empathy-glow"></div>
-                <div class="empathy-art">
-                  <div class="heart" role="img" aria-label="Playful empathy heart character">
-                    <div class="heart-body"><div><img src="assets/heart-body.svg" alt=""></div></div>
-                    <div class="heart-eye-l"><div><img src="assets/heart-eye.svg" alt=""></div></div>
-                    <div class="heart-eye-r"><div><img src="assets/heart-eye.svg" alt=""></div></div>
-                    <div class="heart-smile"><div><img src="assets/heart-smile.svg" alt=""></div></div>
-                    <div class="heart-spark"><div><img src="assets/heart-spark.svg" alt=""></div></div>
-                  </div>
-                  <span class="link-lines"><i></i><i></i></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
+    </div>
   </div>
+</section>
+
+<section class="blog" id="blog">
+  <div class="shell">
+    <h2 class="h2" style="margin-bottom:32px">Read our blog</h2>
+    <div class="card-row">
+      <article class="card">
+        <div>
+          <div class="card-media"><img src="assets/img/blog-creator-economy.png" alt="Five-stage journey of the creator economy diagram"></div>
+          <div class="card-body">
+            <p class="eyebrow" style="font-size:10px;letter-spacing:.5px;line-height:15px">Article</p>
+            <h3>A 5-Stage Journey to Spark, Cultivate, and<br>Evolve the Creator Economy</h3>
+            <p>The Creator Economy thrives on a five-stage journey. Creators begin by igniting a spark with unique ideas, then experiment with formats to build a community. They cultivate their...</p>
+          </div>
+        </div>
+        <div class="card-foot" aria-hidden="true">➔</div>
+      </article>
+
+      <article class="card">
+        <div>
+          <div class="card-media"><img src="assets/img/blog-future-proof.png" alt="Future-proof design beyond functionality illustration"></div>
+          <div class="card-body">
+            <p class="eyebrow" style="font-size:10px;letter-spacing:.5px;line-height:15px">Article</p>
+            <h3>Future-Proof Design Beyond Functionality</h3>
+            <p>Designing good products that do good.</p>
+          </div>
+        </div>
+        <div class="card-foot" aria-hidden="true">➔</div>
+      </article>
+
+      <article class="card">
+        <div>
+          <div class="card-media"><img src="assets/img/blog-bright-patterns.png" alt="Bright patterns versus dark patterns artwork"></div>
+          <div class="card-body">
+            <p class="eyebrow" style="font-size:10px;letter-spacing:.5px;line-height:15px">Article</p>
+            <h3>Shining Light on Deceptive Designs:<br>Countering Dark Patterns with Bright Patterns</h3>
+            <p>Bright patterns prioritize transparency and user empowerment, countering dark patterns by fostering trust, clarity, and positive user experiences.</p>
+          </div>
+        </div>
+        <div class="card-foot" aria-hidden="true">➔</div>
+      </article>
+    </div>
+    <div class="view-all"><a class="more" href="#blog">View all blogs ➔</a></div>
+  </div>
+</section>
+
+<section class="marquee-section" aria-label="Service design methods">
+  <p class="marquee-title">Service Design For Good</p>
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>📍 Doll Roleplay</span><span class="hot">✈ FGI</span><span>📷 Usability Test</span><span class="pink">👓 Sensitizing</span><span>💡 Ideation</span><span class="hot">⚡ Speed Dating</span><span>🔎 Contextual Inquiry</span><span>📦 Empathy Probe</span><span>🎨 Generative Session</span><span>🗺️ Context Mapping</span><span>👥 Citizen Participation</span><span aria-hidden="true">📍 Doll Roleplay</span><span class="hot" aria-hidden="true">✈ FGI</span><span aria-hidden="true">📷 Usability Test</span><span class="pink" aria-hidden="true">👓 Sensitizing</span><span aria-hidden="true">💡 Ideation</span><span class="hot" aria-hidden="true">⚡ Speed Dating</span><span aria-hidden="true">🔎 Contextual Inquiry</span><span aria-hidden="true">📦 Empathy Probe</span><span aria-hidden="true">🎨 Generative Session</span><span aria-hidden="true">🗺️ Context Mapping</span><span aria-hidden="true">👥 Citizen Participation</span>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" aria-label="Lab photos">
+  <div class="shell">
+    <figure><img src="assets/img/gallery-1-workshop.png" alt="SDG collaboration workshop participants"></figure>
+    <figure><img src="assets/img/gallery-2-campus.png" alt="Dongseo University campus building with DSU letters"></figure>
+    <figure><img src="assets/img/gallery-3-studio.png" alt="Lab members inside the workshop studio room"></figure>
+    <figure><img src="assets/img/gallery-4-lecture.png" alt="Prof. Yong-Ki Lee presenting during an inter-university collaboration workshop"></figure>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="cta-inner">
+    <h2>Let's find our common ground.</h2>
+    <p>We always look forward to future collaborations. Think our interests match?<br>Let's have a cup of coffee!</p>
+    <a class="btn-white" href="mailto:ykl77@gdsu.dongseo.ac.kr">Contact us</a>
+  </div>
+</section>
+
 </main>
 
-<!-- ───────── footer ───────── -->
-<footer class="site-footer"></footer>
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand"><b>SD4G</b><span class="chip">Lab</span></span>
+        <address>NM1012, Dongseo University, 47 Jurye-ro, Sasang-gu, Busan, South<br>Korea, 47011</address>
+        <div class="footer-contact">
+          <a href="https://maps.google.com/?q=Dongseo+University+47+Jurye-ro+Sasang-gu+Busan" target="_blank" rel="noopener"><span aria-hidden="true">🗺️</span> Find us on the map</a>
+          <a href="mailto:ykl77@gdsu.dongseo.ac.kr"><span aria-hidden="true">✉️</span> ykl77@gdsu.dongseo.ac.kr</a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div>
+          <h4>About us</h4>
+          <ul><li><a href="#about">About SD4G</a></li><li><a href="#people">People</a></li><li><a href="#blog">Updates</a></li></ul>
+        </div>
+        <div>
+          <h4>Research</h4>
+          <ul><li><a href="#projects">Projects</a></li><li><a href="#publications">Publications</a></li></ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul><li><a href="#blog">Blog</a></li><li><a href="#scholarship">Scholarship</a></li><li><a href="#scholarship">Design at DSU</a></li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <span>©2026 SD4G. All rights reserved.</span>
+      <span>Service Design for Good Lab</span>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
