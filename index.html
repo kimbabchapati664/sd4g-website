@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SD4G — Service Design for Good</title>
+<meta name="description" content="SD4G Lab at Dongseo University. Framing and solving complex wicked problems through service design — environmental challenges, social innovation, and ethical design for vulnerable communities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ───────────────────────── tokens ───────────────────────── */
+:root{
+  --ink:#001736;            /* primary navy */
+  --ink-80:rgba(0,23,54,.8);
+  --ink-90:rgba(0,23,54,.9);
+  --ink-60:rgba(0,23,54,.6);
+  --ink-40:rgba(0,23,54,.4);
+  --muted:#5f6775;
+  --muted-70:rgba(95,103,117,.7);
+  --page:#fbf9f4;
+  --card:#ffffff;
+  --line:rgba(0,0,0,.05);
+  --line-strong:rgba(0,0,0,.15);
+  --wash:rgba(0,0,0,.05);
+  --wash-soft:rgba(0,0,0,.04);
+  --accent-teal:#00a694;
+  --accent-coral:#fd6a49;
+  --art-periwinkle:#c7d2fe;
+  --art-buttercup:#fce77d;
+  --art-lilac:#ddd6fe;
+
+  --shell:1440px;           /* design content width */
+  --gutter:64px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  background:var(--page);
+  color:var(--ink);
+  font-family:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:none}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+
+.shell{width:100%;max-width:var(--shell);margin:0 auto}
+
+/* ───────────────────────── header ───────────────────────── */
+.site-header{padding:28px var(--gutter) 16px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-left{display:flex;align-items:center;gap:48px}
+
+.brand{display:flex;align-items:center;gap:12px;padding:4px;border-radius:12px}
+.brand-mark{
+  width:40px;height:40px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--ink);border-radius:999px;
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.05));
+}
+.brand-mark img{width:20px;height:20px}
+.brand-name{font-size:20px;font-weight:800;letter-spacing:-.5px;line-height:25px;color:var(--ink)}
+.brand-sub{display:flex;align-items:center;gap:6px;height:16.5px}
+.brand-sub span{font-size:11px;font-weight:600;letter-spacing:.275px;line-height:16.5px;color:var(--muted);white-space:nowrap}
+.brand-dot{width:4px;height:4px;flex:none;border-radius:999px;background:var(--accent-coral)}
+
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:15px;font-weight:600;letter-spacing:-.375px;line-height:22.5px;color:var(--ink-80);white-space:nowrap}
+.nav-links a:hover{color:var(--ink)}
+
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;flex:none;
+  padding:11px 21px;border-radius:999px;
+  background:transparent;border:1px solid var(--line-strong);
+  box-shadow:0 1px 2px rgba(0,0,0,.05);
+  font-size:14px;font-weight:600;letter-spacing:-.35px;line-height:21px;color:var(--ink);
+  cursor:pointer;
+}
+.btn-ghost img{width:16px;height:16px}
+
+/* ───────────────────────── hero ───────────────────────── */
+.hero{padding:31.5px var(--gutter) 79.5px;overflow:hidden}
+.hero-grid{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  column-gap:56px;
+  align-items:center;
+  min-height:778.56px;
+}
+
+/* left column */
+.hero-copy{grid-column:1 / span 5;min-width:0;display:flex;flex-direction:column;justify-content:center}
+
+.lab-badge{
+  display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
+  padding:5px 13px;border-radius:999px;
+  background:var(--wash);border:1px solid var(--line);
+  margin-bottom:20px;
+}
+.lab-badge i{width:6px;height:6px;border-radius:999px;background:var(--accent-teal)}
+.lab-badge span{
+  font-size:12px;font-weight:700;letter-spacing:.3px;line-height:16px;
+  text-transform:uppercase;color:var(--ink-80);white-space:nowrap;
+}
+
+.hero-title{
+  margin:0 0 28px;
+  font-size:72px;font-weight:800;letter-spacing:-2.52px;line-height:72px;color:var(--ink);
+}
+
+.hero-lede{
+  max-width:448px;height:146.51px;margin:-1.06px 0 0;
+  font-size:17px;font-weight:400;line-height:27.63px;color:var(--muted);
+}
+
+/* form */
+.capture{display:flex;flex-direction:column;gap:14px;width:100%;max-width:384px}
+.capture form{display:flex;flex-direction:column;gap:12px}
+.field{padding-bottom:8px;border-bottom:2px solid var(--line-strong)}
+.field input{
+  width:100%;padding:1px 0 3px;border:0;background:transparent;outline:none;
+  font-size:16px;font-weight:500;color:var(--ink);
+}
+.field input::placeholder{color:var(--muted-70)}
+.field:focus-within{border-bottom-color:var(--ink)}
+
+.submit-row{display:flex;align-items:center;gap:12px;padding-top:4px}
+.btn-solid{
+  flex:1 0 0;min-width:0;
+  padding:14px 24px;border:0;border-radius:12px;background:var(--ink);
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.05));
+  font-size:14px;font-weight:500;letter-spacing:-.35px;line-height:20px;
+  color:#fff;text-align:center;cursor:pointer;
+}
+.mail-badge{
+  width:48px;height:48px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--wash-soft);border:1px solid var(--line);border-radius:12px;
+}
+.mail-badge img{width:20px;height:20px}
+
+.lab-meta{display:flex;align-items:center;gap:6px}
+.lab-meta img{width:14px;height:14px;flex:none}
+.lab-meta p{font-size:12px;line-height:16px;color:var(--muted)}
+
+/* right column — card rail */
+.hero-cards{
+  grid-column:6 / span 7;
+  min-width:0;
+  height:510.54px;
+  overflow-x:auto;overflow-y:hidden;
+  scrollbar-width:none;
+}
+.hero-cards::-webkit-scrollbar{display:none}
+.card-rail{display:flex;gap:24px;padding:8px 4px 24px;width:max-content;height:100%}
+
+.card{
+  width:310px;height:100%;flex:none;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:25px;border-radius:32px;
+  background:var(--card);border:1px solid var(--line);
+  box-shadow:0 4px 20px -2px rgba(0,23,54,.04);
+}
+.card-top{display:flex;flex-direction:column;gap:8px}
+.card-meta{display:flex;align-items:center;justify-content:space-between}
+.tag{
+  padding:6px 12px;border-radius:999px;background:var(--wash);
+  font-size:12px;font-weight:600;line-height:16px;color:var(--ink-90);white-space:nowrap;
+}
+.card-arrow{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:999px}
+.card-arrow img{width:16px;height:16px}
+.card h2{
+  margin:0;padding-top:12px;
+  font-size:24px;font-weight:700;letter-spacing:-.6px;line-height:33px;color:var(--ink);
+}
+.card-desc{padding-right:8px;font-size:12px;line-height:19.5px;color:var(--muted)}
+
+/* illustration canvases */
+.canvas-wrap{height:244.02px;padding-top:24px}
+.canvas{
+  position:relative;height:220.02px;border-radius:16px;overflow:hidden;
+  display:flex;justify-content:center;
+}
+
+/* card 1 — ecology */
+.canvas-eco{background:var(--art-periwinkle);align-items:flex-end;padding:68px 12px 24px}
+.loop-guide{position:absolute;inset:32px;border:2px dashed var(--ink-40);border-radius:999px}
+.sprout{position:relative;width:128px;height:128px;display:flex;align-items:center;justify-content:center}
+.sprout > img{width:100%;height:100%;filter:drop-shadow(0 1px .5px rgba(0,0,0,.05))}
+.sprout-eyes{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:12px;padding-top:20px}
+.sprout-eyes i{width:10px;height:10px;border-radius:999px;background:var(--ink)}
+.sprout-smile{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding-top:40px}
+.sprout-smile i{width:14px;height:8px;border-bottom:2px solid var(--ink);border-radius:999px}
+
+/* card 2 — economy */
+.canvas-econ{background:var(--art-buttercup);align-items:flex-end;padding:104px 12px 4px}
+.sunburst{width:160px;height:112px}
+.sunburst img{width:100%;height:100%}
+.coin{
+  position:absolute;top:24px;right:48px;
+  width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+  background:#fff;border:2px solid var(--ink);border-radius:999px;
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.05));
+}
+.coin img{width:24px;height:24px}
+
+/* card 3 — individuality */
+.canvas-incl{background:var(--art-lilac);align-items:center;padding:12px}
+.empathy{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+.empathy-glow{
+  position:absolute;left:62px;top:42px;width:112px;height:112px;
+  background:rgba(255,255,255,.4);border-radius:999px;filter:blur(2px);
+}
+.empathy-art{position:relative;display:flex;align-items:center;gap:8px}
+.heart{
+  position:relative;width:96px;height:96px;overflow:hidden;
+  filter:drop-shadow(0 1px .5px rgba(0,0,0,.06)) drop-shadow(0 1px 1px rgba(0,0,0,.1));
+}
+.heart > div{position:absolute}
+.heart img{width:100%;height:100%}
+.heart-body{inset:17.77% 16.25% 18% 16.25%}
+.heart-body > div{position:absolute;inset:-1.56% 43.79% 43.97% -1.48%}
+.heart-eye-l{inset:37.5% 55.5% 57.5% 39.5%}
+.heart-eye-r{inset:37.5% 39.5% 57.5% 55.5%}
+.heart-eye-l > div,.heart-eye-r > div{position:absolute;inset:0 45.27% 45.27% 0}
+.heart-smile{top:48%;bottom:50%;left:46%;right:46%}
+.heart-smile > div{position:absolute;inset:-50% 32.77% -4.73% -12.5%}
+.heart-spark{inset:10% 12% 74% 72%}
+.heart-spark > div{position:absolute;inset:-11.86% 33.41% 33.41% -11.86%}
+.link-lines{display:flex;flex-direction:column;gap:6px;opacity:.7}
+.link-lines i{height:4px;border-radius:999px;background:var(--ink-60)}
+.link-lines i:first-child{width:24px}
+.link-lines i:last-child{width:16px}
+
+/* ───────────────────────── footer ───────────────────────── */
+.site-footer{height:41px;border-top:1px solid var(--line)}
+
+/* ───────────────────────── responsive ───────────────────────── */
+@media (max-width:1180px){
+  :root{--gutter:40px}
+  .nav-links{display:none}
+  .hero-grid{grid-template-columns:minmax(0,1fr);row-gap:56px;min-height:0}
+  .hero-copy,.hero-cards{grid-column:1 / -1}
+  .hero-title{font-size:clamp(44px,8vw,72px);line-height:1;letter-spacing:-.035em}
+  .hero-lede{height:auto;max-width:560px;margin-bottom:28px}
+  .hero-lede br{display:none}
+  .hero-cards{height:auto}
+  .card-rail{height:auto}
+  .card{height:478.54px}
+}
+@media (max-width:640px){
+  :root{--gutter:20px}
+  .site-header{padding:20px var(--gutter) 12px}
+  .brand-sub{display:none}
+  .btn-ghost span{display:none}
+  .btn-ghost{padding:11px}
+  .hero{padding:24px var(--gutter) 48px}
+  .capture{max-width:none}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ───────── header ───────── -->
+<header class="site-header">
+  <nav class="nav shell">
+    <div class="nav-left">
+      <a class="brand" href="#" aria-label="SD4G home">
+        <span class="brand-mark"><img src="assets/logo.svg" alt=""></span>
+        <span>
+          <span class="brand-name">SD4G</span>
+          <span class="brand-sub">
+            <span>Service Design for Good</span>
+            <i class="brand-dot"></i>
+            <span>Dongseo Univ.</span>
+          </span>
+        </span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#">About</a>
+        <a href="#">People</a>
+        <a href="#">Projects</a>
+        <a href="#">Publications</a>
+        <a href="#">Study with us</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+
+    <a class="btn-ghost" href="#">
+      <img src="assets/icon-join.svg" alt="">
+      <span>Join Our Research</span>
+    </a>
+  </nav>
+</header>
+
+<!-- ───────── hero ───────── -->
+<main class="hero">
+  <div class="hero-grid shell">
+
+    <!-- left: editorial typography + capture form -->
+    <section class="hero-copy">
+      <span class="lab-badge">
+        <i></i><span>SD4G Lab · Dongseo University</span>
+      </span>
+
+      <h1 class="hero-title">Design for<br>Good.<br>Frame<br>Boldly.<br>Solve<br>Wicked.</h1>
+
+      <p class="hero-lede">
+        Framing and solving complex wicked problems through<br>
+        service design. We tackle rising environmental<br>
+        challenges, drive social innovation, and design ethically<br>
+        for vulnerable communities.
+      </p>
+
+      <div class="capture">
+        <form onsubmit="return false;">
+          <label class="field">
+            <span class="sr-only" hidden>Email</span>
+            <input type="email" name="email" placeholder="Enter your email" autocomplete="email">
+          </label>
+          <div class="submit-row">
+            <button class="btn-solid" type="submit">Inquire / Collaborate</button>
+            <span class="mail-badge"><img src="assets/icon-mail.svg" alt=""></span>
+          </div>
+        </form>
+        <div class="lab-meta">
+          <img src="assets/icon-pin.svg" alt="">
+          <p>Based in Busan, South Korea · Led by Prof. Yong-Ki Lee</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- right: focus area cards -->
+    <section class="hero-cards" aria-label="Focus areas">
+      <div class="card-rail">
+
+        <!-- card 1 -->
+        <article class="card">
+          <div class="card-top">
+            <div class="card-meta">
+              <span class="tag">SD4 Ecology</span>
+              <span class="card-arrow"><img src="assets/icon-arrow.svg" alt=""></span>
+            </div>
+            <h2>Carbon &amp; Waste<br>Interventions</h2>
+            <p class="card-desc">
+              Generative AI-driven carbon reduction<br>
+              technologies &amp; tackling plastic waste<br>
+              through positive service design.
+            </p>
+          </div>
+          <div class="canvas-wrap">
+            <div class="canvas canvas-eco">
+              <div class="loop-guide"></div>
+              <div class="sprout">
+                <img src="assets/art-leaf.svg" alt="Sprouting ecology character">
+                <span class="sprout-eyes"><i></i><i></i></span>
+                <span class="sprout-smile"><i></i></span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- card 2 -->
+        <article class="card">
+          <div class="card-top">
+            <div class="card-meta">
+              <span class="tag">SD4 Economy</span>
+              <span class="card-arrow"><img src="assets/icon-arrow.svg" alt=""></span>
+            </div>
+            <h2>Social Innovation<br>&amp; Capital</h2>
+            <p class="card-desc">
+              Turning food waste into resources to drive<br>
+              social enterprises that create new value<br>
+              through participatory design.
+            </p>
+          </div>
+          <div class="canvas-wrap">
+            <div class="canvas canvas-econ">
+              <div class="sunburst">
+                <img src="assets/art-sunburst.svg" alt="Community hands radiating sunshine">
+              </div>
+              <span class="coin"><img src="assets/icon-coin.svg" alt=""></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- card 3 -->
+        <article class="card">
+          <div class="card-top">
+            <div class="card-meta">
+              <span class="tag">SD4 Individuality</span>
+              <span class="card-arrow"><img src="assets/icon-arrow-3.svg" alt=""></span>
+            </div>
+            <h2>Ethical &amp; Inclusive<br>Design</h2>
+            <p class="card-desc">
+              Designing ethically for vulnerable<br>
+              populations and giving voice to stigmatized<br>
+              topics, digital inclusion &amp; mental health.
+            </p>
+          </div>
+          <div class="canvas-wrap">
+            <div class="canvas canvas-incl">
+              <div class="empathy">
+                <div class="empathy-glow"></div>
+                <div class="empathy-art">
+                  <div class="heart" role="img" aria-label="Playful empathy heart character">
+                    <div class="heart-body"><div><img src="assets/heart-body.svg" alt=""></div></div>
+                    <div class="heart-eye-l"><div><img src="assets/heart-eye.svg" alt=""></div></div>
+                    <div class="heart-eye-r"><div><img src="assets/heart-eye.svg" alt=""></div></div>
+                    <div class="heart-smile"><div><img src="assets/heart-smile.svg" alt=""></div></div>
+                    <div class="heart-spark"><div><img src="assets/heart-spark.svg" alt=""></div></div>
+                  </div>
+                  <span class="link-lines"><i></i><i></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- ───────── footer ───────── -->
+<footer class="site-footer"></footer>
+
+</body>
+</html>
